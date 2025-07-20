@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKD Prediction Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0d9488;
+            padding-bottom: 15px;
+        }
+        h1 {
+            color: #0d9488;
+            margin: 0;
+            font-size: 28px;
+        }
+        .patient-id {
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        h2 {
+            color: #0d9488;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            font-size: 20px;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        .info-table th {
+            background-color: #f1f5f9;
+            width: 30%;
+            font-weight: 600;
+        }
+        .result-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .critical {
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .print-btn, .back-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .print-btn {
+            background-color: #0d9488;
+            color: white;
+        }
+        .back-btn {
+            background-color: #64748b;
+            color: white;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .report-container {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .info-table {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>Chronic Kidney Disease Prediction Report</h1>
+            <div class="patient-id">
+                Patient ID: CKD-{{ age }}{{ bp }}{{ sc }}-{{ result|slice:"0:3" }}
+            </div>
+        </div>
+
+        <h2>Patient Information</h2>
+        <table class="info-table">
+            <tr>
+                <th>Age</th>
+                <td>{{ age }}</td>
+                <th>Blood Pressure (mmHg)</th>
+                <td>{{ bp }}</td>
+            </tr>
+            <tr>
+                <th>Specific Gravity</th>
+                <td>{{ sg }}</td>
+                <th>Albumin</th>
+                <td>{{ al }}</td>
+            </tr>
+            <tr>
+                <th>Sugar</th>
+                <td>{{ su }}</td>
+                <th>Red Blood Cells</th>
+                <td>{{ rbc }}</td>
+            </tr>
+            <tr>
+                <th>Pus Cells</th>
+                <td>{{ pc }}</td>
+                <th>Pus Cell Clumps</th>
+                <td>{{ pcc }}</td>
+            </tr>
+            <tr>
+                <th>Bacteria</th>
+                <td>{{ ba }}</td>
+                <th>Blood Glucose Random</th>
+                <td>{{ bgr }}</td>
+            </tr>
+            <tr>
+                <th>Blood Urea</th>
+                <td>{{ bu }}</td>
+                <th>Serum Creatinine</th>
+                <td>{{ sc }}</td>
+            </tr>
+            <tr>
+                <th>Sodium</th>
+                <td>{{ sod }}</td>
+                <th>Potassium</th>
+                <td>{{ pot }}</td>
+            </tr>
+            <tr>
+                <th>Hemoglobin</th>
+                <td>{{ hemo }}</td>
+                <th>Packed Cell Volume</th>
+                <td>{{ pcv }}</td>
+            </tr>
+            <tr>
+                <th>White Blood Cell Count</th>
+                <td>{{ wc }}</td>
+                <th>Red Blood Cell Count</th>
+                <td>{{ rc }}</td>
+            </tr>
+            <tr>
+                <th>Hypertension</th>
+                <td>{{ htn }}</td>
+                <th>Diabetes Mellitus</th>
+                <td>{{ dm }}</td>
+            </tr>
+            <tr>
+                <th>Coronary Artery Disease</th>
+                <td>{{ cad }}</td>
+                <th>Appetite</th>
+                <td>{{ appet }}</td>
+            </tr>
+            <tr>
+                <th>Pedal Edema</th>
+                <td>{{ pe }}</td>
+                <th>Anemia</th>
+                <td>{{ ane }}</td>
+            </tr>
+        </table>
+
+        <h2>Prediction Result: <strong></strong> {{ result|default:"NA" }}</h2>
+        {% comment %} <div class="result-box">
+            
+        </div> {% endcomment %}
+
+        {% if result == "CKD" %}
+        <div class="critical">
+            <strong>Note:</strong> This result indicates Chronic Kidney Disease. 
+            Please consult with a nephrology specialist for further evaluation 
+            and management recommendations.
+        </div>
+        {% endif %}
+
+        <div class="button-container no-print">
+            <button onclick="window.print()" class="print-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                    <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                </svg>
+                Print Report
+            </button>
+            <button onclick="window.location.href='{% url 'predict' %}'" class="back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                Back to Predict
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Auto-print when page loads
+        // window.onload = function() {
+        //     setTimeout(function() {
+        //         window.print();
+        //     }, 500);
+        // };
+    </script>
+</body>
+</html>

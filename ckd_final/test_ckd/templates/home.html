@@ -1,0 +1,299 @@
+ {% load static %}
+ {% include 'base.html' %}
+ {% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CKD Prediction System | Home</title>
+    {% load static %}
+    {% include 'base.html' %}
+
+   
+    <style>
+      [data-count] {
+        transition: all 0.3s ease-out;
+      }
+    </style>
+  </head>
+  <body class="font-inter bg-gray-50 mt-20">
+    <!-- Navigation Bar -->
+    
+   
+
+    <!-- Hero Carousel -->
+    <div class="glide relative ">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          <li class="glide__slide relative">
+            <div class="h-screen-70 bg-cover bg-center flex items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white py-24">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Advanced CKD Detection</h1>
+                <p class="text-xl mb-8 max-w-2xl">Early detection saves lives. Our system helps identify chronic kidney disease at its earliest stages.</p>
+              </div>
+            </div>
+          </li>
+          <li class="glide__slide relative">
+            <div class="h-screen-70 bg-cover bg-center flex items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white py-24">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Personalized Group Analysis</h1>
+                <p class="text-xl mb-8 max-w-2xl">Understand risk factors and treatment options tailored to specific patient groups.</p>
+              </div>
+            </div>
+          </li>
+          <li class="glide__slide relative">
+            <div class="h-screen-70 bg-cover bg-center flex items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white py-24">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Evidence-Based Recommendations</h1>
+                <p class="text-xl mb-8 max-w-2xl">Get clinical decision support powered by machine learning and medical research.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="glide__bullets absolute bottom-8 left-0 right-0 flex justify-center" data-glide-el="controls[nav]">
+        <button class="glide__bullet w-3 h-3 mx-1 rounded-full bg-white opacity-50" data-glide-dir="=0"></button>
+        <button class="glide__bullet w-3 h-3 mx-1 rounded-full bg-white opacity-50" data-glide-dir="=1"></button>
+        <button class="glide__bullet w-3 h-3 mx-1 rounded-full bg-white opacity-50" data-glide-dir="=2"></button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <!-- Stats Section -->
+    <div class="bg-white py-16" id="stats-section">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+          <div class="p-6">
+            <div class="text-4xl font-bold text-teal-600 mb-2" data-count="850">0M+</div>
+            <div class="text-gray-600">People affected worldwide</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-teal-600 mb-2" data-count="10">0</div>
+            <div class="text-gray-600">Adults have CKD</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-teal-600 mb-2" data-count="90">0%</div>
+            <div class="text-gray-600">Don't know they have it</div>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl font-bold text-teal-600 mb-2" data-count="95">0%</div>
+            <div class="text-gray-600">Prediction accuracy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="bg-teal-50 py-16" id="feature">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Why Choose Our System</h2>
+        <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">Advanced technology meets clinical expertise for better kidney health outcomes</p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+            <div class="text-teal-600 mb-4 text-4xl">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
+            <p class="text-gray-600">Our deep learning models analyze complex patterns in clinical data to detect subtle signs of kidney disease.</p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+            <div class="text-teal-600 mb-4 text-4xl">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Progressive Monitoring</h3>
+            <p class="text-gray-600">Track disease progression over time with longitudinal analysis and trend visualization.</p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+            <div class="text-teal-600 mb-4 text-4xl">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Data Security</h3>
+            <p class="text-gray-600">Our platform with end-to-end encryption for all patient health information.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-16 bg-white" id="about">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">What Clinicians Say</h2>
+
+        <div class="glide-testimonials">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <div class="bg-teal-50 p-8 rounded-lg max-w-2xl mx-auto">
+                  <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 text-xl mr-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                  <p class="text-gray-700 italic mb-6">"This system has transformed how we screen for CKD in our practice. The predictions are remarkably accurate and have helped us catch several early-stage cases we might have missed."</p>
+                  <div class="flex items-center">
+                    <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center text-teal-600 font-bold mr-4">DR</div>
+                    <div>
+                      <h4 class="font-semibold">Dr. Sarah Johnson</h4>
+                      <p class="text-gray-600 text-sm">Nephrologist, City Hospital</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="glide__slide">
+                <div class="bg-teal-50 p-8 rounded-lg max-w-2xl mx-auto">
+                  <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 text-xl mr-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                  <p class="text-gray-700 italic mb-6">"The group analysis feature provides invaluable insights for population health management. It helps us allocate resources more effectively to high-risk patient groups."</p>
+                  <div class="flex items-center">
+                    <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center text-teal-600 font-bold mr-4">NP</div>
+                    <div>
+                      <h4 class="font-semibold">Nurse Practitioner Mark Davis</h4>
+                      <p class="text-gray-600 text-sm">Community Health Center</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" data-glide-dir="<"><i class="fas fa-chevron-left text-teal-600"></i></button>
+            <button class="glide__arrow glide__arrow--right absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md" data-glide-dir=">"><i class="fas fa-chevron-right text-teal-600"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} <!-- CTA Section -->
+    <div class="bg-gradient-to-r from-teal-500 to-blue-600 py-16 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Improve Kidney Care?</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">Join hundreds of healthcare professionals using our system to detect and manage chronic kidney disease.</p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="{% url 'predict' %}" class="bg-white text-teal-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Start Predicting Now</a>
+          <a href="#" class="border-2 border-white text-white hover:bg-white hover:text-teal-600 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300">Request Demo</a>
+        </div>
+      </div>
+    </div> {% endcomment %}
+
+    <!-- Footer -->
+    <div id="contact">
+    {% include 'footer.html' %}
+
+    </div>
+
+    <!-- Mobile menu script -->
+    
+
+    <!-- Glide.js scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/glide.min.js"></script>
+    <script>
+      // Hero carousel
+      new Glide('.glide', {
+        type: 'carousel',
+        autoplay: 5000,
+        hoverpause: true,
+        perView: 1,
+        animationDuration: 800
+      }).mount()
+      
+      // Testimonials carousel
+      new Glide('.glide-testimonials', {
+        type: 'carousel',
+        autoplay: 6000,
+        hoverpause: true,
+        perView: 1,
+        animationDuration: 800,
+        gap: 40
+      }).mount()
+      
+      // Number counting animation
+      function animateCounters() {
+        const counters = document.querySelectorAll('[data-count]')
+        const speed = 200 // The lower the faster
+        const statsSection = document.getElementById('stats-section')
+        const statsSectionPosition = statsSection.getBoundingClientRect().top
+        const screenPosition = window.innerHeight / 1.3
+      
+        if (statsSectionPosition < screenPosition) {
+          counters.forEach((counter) => {
+            const target = +counter.getAttribute('data-count')
+            const count = +counter.innerText.replace(/[^0-9]/g, '')
+            const increment = target / speed
+      
+            if (count < target) {
+              counter.innerText = Math.ceil(count + increment) + (counter.innerText.includes('M') ? 'M+' : counter.innerText.includes('%') ? '%' : '')
+              setTimeout(animateCounters, 1)
+            } else {
+              counter.innerText = target + (counter.innerText.includes('M') ? 'M+' : counter.innerText.includes('%') ? '%' : '')
+            }
+          })
+        }
+      }
+      
+      // Check on scroll
+      window.addEventListener('scroll', animateCounters)
+      
+      // Also check on page load in case the section is already visible
+      document.addEventListener('DOMContentLoaded', animateCounters)
+      // Improved counting animation with Intersection Observer
+      // Modern approach using Intersection Observer
+      function startCountingWhenVisible() {
+        const counters = document.querySelectorAll('[data-count]')
+        const statsSection = document.getElementById('stats-section')
+      
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateCounters()
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.5 }
+        ) // Trigger when 50% of the element is visible
+      
+        observer.observe(statsSection)
+      }
+      
+      function animateCounters() {
+        const counters = document.querySelectorAll('[data-count]')
+        const speed = 200 // The lower the faster
+      
+        counters.forEach((counter) => {
+          const target = +counter.getAttribute('data-count')
+          const count = +counter.innerText.replace(/[^0-9]/g, '')
+          const increment = target / speed
+      
+          const updateCount = () => {
+            const currentCount = +counter.innerText.replace(/[^0-9]/g, '')
+      
+            if (currentCount < target) {
+              counter.innerText = Math.ceil(currentCount + increment) + (counter.innerText.includes('M') ? 'M+' : counter.innerText.includes('%') ? '%' : '')
+              requestAnimationFrame(updateCount)
+            } else {
+              counter.innerText = target + (counter.innerText.includes('M') ? 'M+' : counter.innerText.includes('%') ? '%' : '')
+            }
+          }
+      
+          updateCount()
+        })
+      }
+      
+      document.addEventListener('DOMContentLoaded', startCountingWhenVisible)
+    </script>
+  </body>
+</html>

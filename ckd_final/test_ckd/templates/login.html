@@ -1,0 +1,249 @@
+{% load static %}
+{% include 'base.html' %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .shake {
+            animation: shake 0.5s linear;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar is included at the top -->
+    
+    <div class="main-content mt-16">
+        <div class="w-full max-w-md">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <div class="p-8">
+                    <!-- Animated Logo/Header -->
+                    <div class="flex justify-center mb-8">
+                        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 rounded-full animate-float">
+                            <i class="fas fa-user-shield text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Welcome Back</h2>
+                    <p class="text-center text-gray-500 mb-8">Sign in to your account</p>
+
+                    {% if error %}
+                    <div id="error-message" class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-lg flex items-start shake">
+                        <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                        <div>
+                            <p class="text-sm text-red-700">{{ error }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" id="loginForm" class="space-y-6">
+                        {% csrf_token %}
+                        
+                        <!-- Phone Input with Country Code Selector -->
+                        <div class="space-y-2">
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <div class="relative flex rounded-md shadow-sm">
+                                <div class="relative flex-grow focus-within:z-10">
+                                    <input type="tel" id="phone" name="phone" 
+                                           class="block w-full rounded-lg border-gray-300 pl-12 focus:border-blue-500 focus:ring-blue-500 py-3"
+                                           required
+                                           pattern="^\+?1?\d{9,15}$"
+                                           placeholder="e.g. +8801736695636">
+                                </div>
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <i class="fas fa-phone text-gray-400"></i>
+                                </div>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <span class="text-gray-400 text-sm" id="phone-format-hint">
+                                        <i class="fas fa-info-circle cursor-help" title="Format: +1234567890 or 1234567890"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <p id="phone-feedback" class="text-xs text-gray-500 mt-1"></p>
+                        </div>
+
+                        <!-- Password Input with Toggle -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">Forgot password?</a>
+                            </div>
+                            <div class="relative rounded-md shadow-sm">
+                                <input type="password" id="password" name="password" 
+                                       class="block w-full rounded-lg border-gray-300 pr-10 focus:border-blue-500 focus:ring-blue-500 py-3"
+                                       required
+                                       minlength="8">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <button type="button" id="togglePassword" class="text-gray-400 hover:text-gray-500">
+                                        <i class="fas fa-eye" id="password-eye-icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p id="password-feedback" class="text-xs text-gray-500 mt-1"></p>
+                        </div>
+
+                        <!-- Remember Me & Submit -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember" name="remember" type="checkbox" 
+                                       class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" 
+                                id="submitBtn"
+                                class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-medium transition-all duration-200 transform hover:-translate-y-0.5">
+                            Sign In
+                        </button>
+                    </form>
+
+                    <div class="mt-6 text-center">
+                        <p class="text-sm text-gray-600">
+                            Don't have an account? 
+                            <a href="{% url 'register' %}" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">Register</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer at the bottom -->
+    {% include 'footer.html' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('password-eye-icon');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle eye icon
+                if (type === 'text') {
+                    eyeIcon.classList.remove('fa-eye');
+                    eyeIcon.classList.add('fa-eye-slash');
+                } else {
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
+            });
+
+            // Phone number validation
+            const phoneInput = document.getElementById('phone');
+            const phoneFeedback = document.getElementById('phone-feedback');
+            
+            phoneInput.addEventListener('input', function() {
+                const phone = this.value;
+                
+                if (phone.length === 0) {
+                    phoneFeedback.textContent = '';
+                    return;
+                }
+                
+                if (!/^\+?[0-9]{9,15}$/.test(phone)) {
+                    phoneFeedback.textContent = 'Please enter a valid phone number';
+                    phoneFeedback.className = 'text-xs text-red-500 mt-1';
+                } else {
+                    phoneFeedback.textContent = 'Phone number looks good';
+                    phoneFeedback.className = 'text-xs text-green-500 mt-1';
+                }
+            });
+
+            // Password validation
+            const passwordFeedback = document.getElementById('password-feedback');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                
+                if (password.length === 0) {
+                    passwordFeedback.textContent = '';
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    passwordFeedback.textContent = 'Password must be at least 8 characters';
+                    passwordFeedback.className = 'text-xs text-red-500 mt-1';
+                } else {
+                    passwordFeedback.textContent = '';
+                }
+            });
+
+            // Form submission handler
+            const form = document.getElementById('loginForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            form.addEventListener('submit', function(e) {
+                // Disable button to prevent multiple submissions
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Signing in...
+                `;
+                
+                // Form is valid, allow submission
+                return true;
+            });
+
+            // Auto-format phone number (optional)
+            phoneInput.addEventListener('keydown', function(e) {
+                // Only allow numbers, plus sign, and control keys
+                if (!/^[0-9+]$/.test(e.key) && 
+                    !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            // Add shake animation to error message
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                // Re-trigger animation by removing and adding class
+                setTimeout(() => {
+                    errorMessage.classList.remove('shake');
+                    void errorMessage.offsetWidth; // Trigger reflow
+                    errorMessage.classList.add('shake');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CKD Prediction Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f9ff; 
+            color: #374151;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0d9488;
+            padding-bottom: 15px;
+        }
+        h1 { 
+            color: #0d9488; 
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 { 
+            color: #0d9488; 
+            border-bottom: 1px solid #ddd; 
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 20px;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #f2f2f2; 
+            width: 30%;
+        }
+        .patient-id {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .test-list {
+            margin-left: 20px;
+        }
+        .test-list li {
+            margin-bottom: 5px;
+        }
+        .critical { 
+            background-color: #ffebee; 
+            border-left: 4px solid #f44336; 
+            padding: 10px; 
+            margin-top: 15px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px auto;
+        }
+        .action-button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .print-button {
+            background-color: #0d9488;
+        }
+        .back-button {
+            background-color: #6b7280;
+        }
+        @media print {
+            nav, footer, .no-print { 
+                display: none !important; 
+            }
+            body {
+                padding: 0;
+                background: white;
+            }
+            .report-container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .button-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header">
+            <h1>CKD Test Suggest Report</h1>
+            <!-- Patient ID generated from form data -->
+            <div class="patient-id">
+                Patient ID: CKD-{{ n1|default:"00" }}{{ n2|default:"00" }}{{ n3|default:"00" }}-{{ result|slice:"-1"|default:"0" }}
+            </div>
+
+        </div>
+
+        <h2>Patient Information</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ n0|default:"Not provided" }}</td>
+            
+            <tr><th>Age (years)</th><td>{{ n1|default:"Not provided" }}</td></tr>
+            <tr><th>Upper BP (mmHg)</th><td>{{ n2|default:"Not provided" }}</td></tr>
+            <tr><th>Lower BP (mmHg)</th><td>{{ n3|default:"Not provided" }}</td></tr>
+            <tr><th>Hypertension (HTN)</th><td>{{ n4|default:"Not provided" }}</td></tr>
+            <tr><th>Diabetes (DM)</th><td>{{ n5|default:"Not provided" }}</td></tr>
+            <tr><th>Pedal Edema (PE)</th><td>{{ n6|default:"Not provided" }}</td></tr>
+            <tr><th>Anemia (ANE)</th><td>{{ n7|default:"Not provided" }}</td></tr>
+            <tr><th>Appetite (Appt)</th><td>{{ n8|default:"Not provided" }}</td></tr>
+            <tr><th>Predicted Group</th><td>{{ result|default:"NA" }}</td></tr>
+        </table>
+        
+        <h2>Recommended Tests</h2>
+        <ol class="test-list">
+            {% if 'Group 1' in result %}
+                <li>Complete Blood Count (CBC)</li>
+                <li>Urine Albumin-to-Creatinine Ratio (uACR)</li>
+                <li>Serum Creatinine</li>
+                <li>Estimated GFR (eGFR)</li>
+                <li>Urine Routine Examination</li>
+                <li>Hemoglobin A1c (HbA1c)</li>
+                <li>Lipid Profile (for HTN/DM patients)</li>
+            {% elif 'Group 2' in result %}
+                <li>Complete Blood Count (CBC)</li>
+                <li>Urine Albumin-to-Creatinine Ratio (uACR)</li>
+                <li>Serum Creatinine</li>
+                <li>Estimated GFR (eGFR)</li>
+                <li>Urine Routine Examination</li>
+                <li>Hemoglobin A1c (HbA1c)</li>
+                <li>Lipid Profile</li>
+                <li>Serum Electrolytes (for HTN/DM/PE patients)</li>
+            {% elif 'Group 3' in result %}
+                <li>Complete Blood Count (CBC)</li>
+                <li>Urine Albumin-to-Creatinine Ratio (uACR)</li>
+                <li>Serum Creatinine</li>
+                <li>Estimated GFR (eGFR)</li>
+                <li>Urine Routine Examination</li>
+                <li>Hemoglobin A1c (HbA1c)</li>
+                <li>Lipid Profile</li>
+                <li>Serum Electrolytes (for HTN/DM/PE patients)</li>
+                <li>Iron Profile</li>
+                <li>Comprehensive Metabolic Panel</li>
+            {% elif 'Group 4' in result %}
+                <li>Complete Blood Count (CBC)</li>
+                <li>Urine Albumin-to-Creatinine Ratio (uACR)</li>
+                <li>Serum Creatinine</li>
+                <li>Estimated GFR (eGFR)</li>
+                <li>Blood Urea Nitrogen (BUN)</li>
+                <li>Serum Electrolytes</li>
+                <li>Urine Routine Examination</li>
+                <li>Hemoglobin A1c (HbA1c)</li>
+                <li>Lipid Profile</li>
+                <li>Iron Profile</li>
+                <li>Ultrasound (Whole Abdomen/KUB Focus)</li>
+                <div class="critical">
+                    <strong>Note:</strong> This is a critical condition requiring urgent nephrology consultation.
+                </div>
+            {% endif %}
+        </ol>
+        
+        <div class="button-container no-print">
+            <button onclick="window.print()" class="action-button print-button">
+                Print This Report
+            </button>
+            <button onclick="window.location.href='{% url 'group' %}'" class="action-button back-button">
+                Back to Predict
+            </button>
+        </div>
+    </div>
+</body>
+</html>
